@@ -1873,7 +1873,7 @@ export class BaileysStartupService extends ChannelStartupService {
           }
         }
         if (message['conversation']) {
-          this.logger.verbose('Sending message');
+          this.logger.verbose('Sending message conversation');
           return await this.client.sendMessage(
             sender,
             {
@@ -1887,7 +1887,7 @@ export class BaileysStartupService extends ChannelStartupService {
         }
 
         if (!message['audio'] && !message['poll'] && sender != 'status@broadcast') {
-          this.logger.verbose('Sending message');
+          this.logger.verbose('Sending message not audio, pool and broadcast');
           return await this.client.sendMessage(
             sender,
             {
@@ -1903,23 +1903,25 @@ export class BaileysStartupService extends ChannelStartupService {
         }
 
         if (sender === 'status@broadcast') {
-          this.logger.verbose('Sending message');
+          this.logger.verbose('Sending message broadcast');
           return await this.client.sendMessage(
             sender,
             message['status'].content as unknown as AnyMessageContent,
             {
               backgroundColor: message['status'].option.backgroundColor,
               font: message['status'].option.font,
-              statusJidList: message['status'].option.statusJidList,
-              viewOnce: viewOnce
+              statusJidList: message['status'].option.statusJidList
             } as unknown as MiscMessageGenerationOptions,
           );
         }
 
-        this.logger.verbose('Sending message');
+        this.logger.verbose('Sending message generic');        
         return await this.client.sendMessage(
           sender,
-          message as unknown as AnyMessageContent,
+          {
+            ...message,
+            viewOnce: viewOnce
+          } as unknown as AnyMessageContent,
           option as unknown as MiscMessageGenerationOptions,
         );
       })();
