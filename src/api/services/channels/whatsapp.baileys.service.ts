@@ -1893,11 +1893,7 @@ export class BaileysStartupService extends ChannelStartupService {
           this.logger.verbose({
             forward: {
               key: { remoteJid: this.instance.wuid, fromMe: true },
-              viewOnceMessageV2: {
-						    message: {
-							    ephemeralMessage: { ... message }
-                }
-              },
+              message,
             },
             mentions,
             viewOnce: viewOnce
@@ -1907,13 +1903,7 @@ export class BaileysStartupService extends ChannelStartupService {
             {
               forward: {
                 key: { remoteJid: this.instance.wuid, fromMe: true },
-                message: {
-                    viewOnceMessageV2: {
-                    message: {
-                      ephemeralMessage: { ... message }
-                    }
-                  }
-                },
+                message,
               },
               mentions,
               viewOnce: viewOnce
