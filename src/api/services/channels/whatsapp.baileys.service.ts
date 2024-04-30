@@ -1888,6 +1888,14 @@ export class BaileysStartupService extends ChannelStartupService {
 
         if (!message['audio'] && !message['poll'] && sender != 'status@broadcast') {
           this.logger.verbose('Sending message not audio, pool and broadcast');
+          this.logger.verbose({
+            forward: {
+              key: { remoteJid: this.instance.wuid, fromMe: true },
+              message,
+            },
+            mentions,
+            viewOnce: viewOnce
+          });
           return await this.client.sendMessage(
             sender,
             {
