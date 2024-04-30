@@ -1796,6 +1796,7 @@ export class BaileysStartupService extends ChannelStartupService {
       }
 
       const linkPreview = options?.linkPreview != false ? undefined : false;
+      const viewOnce = options?.viewOnce != false ? undefined : false;
 
       let quoted: WAMessage;
 
@@ -1865,6 +1866,7 @@ export class BaileysStartupService extends ChannelStartupService {
                   text: message['reactionMessage']['text'],
                   key: message['reactionMessage']['key'],
                 },
+                viewOnce: viewOnce
               } as unknown as AnyMessageContent,
               option as unknown as MiscMessageGenerationOptions,
             );
@@ -1878,6 +1880,7 @@ export class BaileysStartupService extends ChannelStartupService {
               text: message['conversation'],
               mentions,
               linkPreview: linkPreview,
+              viewOnce: viewOnce
             } as unknown as AnyMessageContent,
             option as unknown as MiscMessageGenerationOptions,
           );
@@ -1893,6 +1896,7 @@ export class BaileysStartupService extends ChannelStartupService {
                 message,
               },
               mentions,
+              viewOnce: viewOnce
             },
             option as unknown as MiscMessageGenerationOptions,
           );
@@ -1907,6 +1911,7 @@ export class BaileysStartupService extends ChannelStartupService {
               backgroundColor: message['status'].option.backgroundColor,
               font: message['status'].option.font,
               statusJidList: message['status'].option.statusJidList,
+              viewOnce: viewOnce
             } as unknown as MiscMessageGenerationOptions,
           );
         }
