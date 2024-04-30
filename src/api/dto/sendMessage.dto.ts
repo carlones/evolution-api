@@ -16,6 +16,7 @@ export class Options {
   quoted?: Quoted;
   mentions?: Mentions;
   linkPreview?: boolean;
+  viewOnce?: boolean;
   encoding?: boolean;
 }
 class OptionsMessage {
