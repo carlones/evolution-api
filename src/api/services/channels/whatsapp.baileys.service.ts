@@ -1797,6 +1797,8 @@ export class BaileysStartupService extends ChannelStartupService {
 
       const linkPreview = options?.linkPreview != false ? undefined : false;
       const viewOnce = options?.viewOnce != false ? undefined : false;
+      this.logger.verbose("Options");
+      this.logger.verbose(options);
 
       let quoted: WAMessage;
 
